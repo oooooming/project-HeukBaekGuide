@@ -1,4 +1,4 @@
 package com.example.heukbaekguide.domain;
 
-public class REview {
+public class Review {
 }
