@@ -1,20 +1,22 @@
-/* 슬라이더 전체 컨테이너 */
-.slider {
+.restaurant-slider {
     display: flex;
-    overflow-x: scroll;
-    gap: 15px;
-    padding: 10px;
+    overflow-x: auto;
+    gap: 20px;
+    color: black;
 }
 
-/* 슬라이더 카드 */
-.card {
-    flex: 0 0 auto;
-    width: 200px;
-    background-color: white;
-    color: black;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    padding: 15px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    text-align: center;
+.slider-card {
+    background: white;
+    border-radius: 8px;
+    padding: 16px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.slider-card img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+.slider-info {
+    margin-top: 12px;
 }
