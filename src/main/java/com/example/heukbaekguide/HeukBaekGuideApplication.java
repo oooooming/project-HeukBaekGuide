@@ -1,4 +1,4 @@
-package com.example.heukbaekguide.service;
+package com.example.heukbaekguide;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
