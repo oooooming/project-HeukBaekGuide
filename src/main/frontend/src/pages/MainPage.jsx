@@ -83,10 +83,10 @@ const MainPage = ({ isLoggedIn, setIsLoggedIn, likedRestaurants, setLikedRestaur
                         alt="HeukBaek Guide"
                         className="left-image"
                     />
-                    <div className="search-container">
+                    <div className="main-search-container">
                         <input
                             type="text"
-                            className="search-bar"
+                            className="main-search-bar"
                             placeholder="셰프, 레스토랑으로 검색하세요"
                             onClick={handleSearchClick}
                         />

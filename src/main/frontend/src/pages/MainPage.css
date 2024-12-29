@@ -49,7 +49,7 @@
     margin-bottom: 20px;
 }
 
-.search-container {
+.main-search-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -59,7 +59,7 @@
     z-index: 5;
 }
 
-.search-bar {
+.main-search-bar {
     width: 100%;
     padding: 15px;
     font-size: 16px;
@@ -69,7 +69,7 @@
     transition: box-shadow 0.3s ease;
 }
 
-.search-bar:focus {
+.main-search-bar:focus {
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
     outline: none;
 }
