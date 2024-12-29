@@ -1,7 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./RestaurantSlider.css";
 
-const RestaurantSlider = ({ data }) => {
+const RestaurantSlider = ({ data, onLike }) => {
+    const sliderRef = useRef(null);
+
+    const scrollLeft = () => {
+        sliderRef.current.scrollBy({
+            left: -300, // 카드 하나 크기만큼 이동
+            behavior: "smooth",
+        });
+    };
+
+    const scrollRight = () => {
+        sliderRef.current.scrollBy({
+            left: 300, // 카드 하나 크기만큼 이동
+            behavior: "smooth",
+        });
+    };
+
     const [randomRestaurants, setRandomRestaurants] = useState([]);
 
     useEffect(() => {
@@ -14,18 +30,31 @@ const RestaurantSlider = ({ data }) => {
     }, [data]);
 
     return (
-        <div className="restaurant-slider">
-            {/* 레스토랑 데이터를 슬라이드 형식으로 표시 */}
-            {randomRestaurants.map((restaurant) => (
-                <div key={restaurant.id} className="slider-card">
-                    <img src={restaurant.image} alt={restaurant.name} />
-                    <div className="slider-info">
-                        <h3>{restaurant.name}</h3>
-                        <p>{restaurant.address}</p>
-                        <p>{restaurant.phone}</p>
+        <div className="restaurant-slider-container">
+            <button className="arrow-button left" onClick={scrollLeft}>
+                &#8249;
+            </button>
+            <div className="restaurant-slider" ref={sliderRef}>
+                {data.map((restaurant) => (
+                    <div key={restaurant.id} className="slider-card">
+                        <img src={restaurant.image} alt={restaurant.name} />
+                        <div className="slider-info">
+                            <h3>{restaurant.name}</h3>
+                            <p>{restaurant.address}</p>
+                            <p>{restaurant.phone}</p>
+                            <button
+                                className="like-button"
+                                onClick={() => onLike(restaurant)}
+                            >
+                                ❤️
+                            </button>
+                        </div>
                     </div>
-                </div>
-            ))}
+                ))}
+            </div>
+            <button className="arrow-button right" onClick={scrollRight}>
+                &#8250;
+            </button>
         </div>
     );
 };
