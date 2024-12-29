@@ -17,6 +17,8 @@ const SignupPage = () => {
             return;
         }
 
+        // 백엔드 연동 주석 처리
+        /*
         try {
             const response = await fetch("https://heukbaeguide.com/v1/createaccount", {
                 method: "POST",
@@ -29,7 +31,7 @@ const SignupPage = () => {
             if (response.ok) {
                 const data = await response.json();
                 alert("회원가입 성공! 이제 로그인하세요.");
-                navigate("/login"); // 로그인 페이지로 이동
+                navigate("/login");
             } else {
                 alert("회원가입 실패. 입력한 정보를 확인해주세요.");
             }
@@ -37,15 +39,17 @@ const SignupPage = () => {
             console.error("Error during signup:", error);
             alert("회원가입 중 오류가 발생했습니다. 다시 시도해주세요.");
         }
+        */
+
+        // 프론트엔드에서 회원가입 성공 메시지 표시
+        alert("회원가입 성공! 이제 로그인하세요.");
+        navigate("/login");
     };
 
     return (
         <div className="auth-container">
             <div className="back-container">
-                <img
-                    src="/images/BackGround_Image.png"
-                    alt="Background"
-                />
+                <img src="/images/BackGround_Image.png" alt="Background" />
             </div>
             <div className="title-box">
                 <h1 className="title-text">Sign Up</h1>
