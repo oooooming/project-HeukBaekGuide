@@ -14,7 +14,7 @@ public class MenuItem {
     @Id
     @Column(name = "menuItem_id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int menuItemId;
+    private Long menuItemId;
 
     @Column(name = "name", nullable = false)
     private String menuItemName;

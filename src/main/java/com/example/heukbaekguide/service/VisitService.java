@@ -13,6 +13,6 @@ public class VisitService {
     private final VisitRepository visitRepository;
 
     public List<Visit> getVisitsByUserId(Long userId) {
-        return visitRepository.findByUserId(userId);
+        return visitRepository.findByUser_UserId(userId);
     }
 }

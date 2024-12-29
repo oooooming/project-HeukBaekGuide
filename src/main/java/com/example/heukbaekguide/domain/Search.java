@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.dialect.function.TruncFunction;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Getter
 @Setter
@@ -22,7 +24,7 @@ public class Search {
     private String search_term;
 
     @Column(nullable = false)
-    private TruncFunction.DatetimeTrunc search_at;
+    private LocalDateTime searchAt;
 
     @Column(nullable = false)
     private String user_name;
