@@ -22,6 +22,10 @@ public class Visit {
     private LocalDateTime visitDate;
 
     @OneToOne
-    @Column(name = "review_id", nullable = false)
+    @JoinColumn(name = "review_id", nullable = false) // 외래 키 매핑
     private Review review;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")  // 'user_id'는 외래 키 컬럼명
+    private User user;
 }
