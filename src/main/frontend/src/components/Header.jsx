@@ -1,12 +1,14 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import "./Header.css";
 
 const Header = ({ isLoggedIn, setIsLoggedIn }) => {
     const navigate = useNavigate();
+    const location = useLocation();
 
     const handleLogout = () => {
         setIsLoggedIn(false);
+        alert("로그아웃되었습니다.");
         navigate("/");
     };
 
@@ -27,9 +29,20 @@ const Header = ({ isLoggedIn, setIsLoggedIn }) => {
                 >
                     Map
                 </button>
-                {isLoggedIn ? (
-                    <button className="menu-button" onClick={handleLogout}>
-                        Logout
+                {location.pathname === "/mypage" ? (
+                    // MyPage 화면에서 MyPage만 표시
+                    <button
+                        className="menu-button"
+                        onClick={() => navigate("/mypage")}
+                    >
+                        MyPage
+                    </button>
+                ) : isLoggedIn ? (
+                    <button
+                        className="menu-button"
+                        onClick={() => navigate("/mypage")}
+                    >
+                        MyPage
                     </button>
                 ) : (
                     <button

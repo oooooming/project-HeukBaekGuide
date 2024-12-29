@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./StartPage.css";
+import { mockUser } from "../data/mockData";
 
 const LoginPage = ({ setIsLoggedIn }) => {
     const [email, setEmail] = useState("");
@@ -10,6 +11,8 @@ const LoginPage = ({ setIsLoggedIn }) => {
     const handleLogin = async (e) => {
         e.preventDefault();
 
+        // 백엔드 연동 주석 처리
+        /*
         try {
             const response = await fetch("https://heukbaeguide.com/v1/signin", {
                 method: "POST",
@@ -22,8 +25,8 @@ const LoginPage = ({ setIsLoggedIn }) => {
             if (response.ok) {
                 const data = await response.json();
                 alert("로그인 성공!");
-                setIsLoggedIn(true); // 로그인 상태 업데이트
-                navigate("/"); // 메인 페이지로 이동
+                setIsLoggedIn(true);
+                navigate("/");
             } else {
                 alert("로그인 실패. 이메일과 비밀번호를 확인해주세요.");
             }
@@ -31,15 +34,22 @@ const LoginPage = ({ setIsLoggedIn }) => {
             console.error("Error during login:", error);
             alert("로그인 중 오류가 발생했습니다. 다시 시도해주세요.");
         }
+        */
+
+        // 프론트엔드에서만 확인
+        if (email === mockUser.email && password === mockUser.password) {
+            alert("로그인 성공!");
+            setIsLoggedIn(true); // 로그인 상태 업데이트
+            navigate("/"); // 메인 페이지로 이동
+        } else {
+            alert("로그인 실패. 이메일과 비밀번호를 확인해주세요.");
+        }
     };
 
     return (
         <div className="auth-container">
             <div className="back-container">
-                <img
-                    src="/images/BackGround_Image.png"
-                    alt="Background"
-                />
+                <img src="/images/BackGround_Image.png" alt="Background" />
             </div>
             <div className="title-box">
                 <h1 className="title-text">Login</h1>
