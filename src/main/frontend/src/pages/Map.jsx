@@ -11,30 +11,51 @@ function Map() {
     const [searchQuery, setSearchQuery] = useState("");
 
     useEffect(() => {
-        if (!window.naver) {
-            console.error("네이버 지도 API가 로드되지 않았습니다.");
-            return;
-        }
+        const loadNaverMap = () => {
+            const clientId = process.env.REACT_APP_CLIENT_ID;
 
-        const { naver } = window;
+            if (!clientId) {
+                console.error("네이버 지도 API 클라이언트 ID가 설정되지 않았습니다.");
+                return;
+            }
 
-        const mapInstance = new naver.maps.Map("map", {
-            center: new naver.maps.LatLng(37.5665, 126.9780),
-            zoom: 14,
-        });
+            const script = document.createElement("script");
+            script.src = `https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${clientId}`;
+            script.async = true;
+            script.onload = initializeMap;
+            script.onerror = () => {
+                console.error("네이버 지도 API 로드에 실패했습니다.");
+            };
+            document.head.appendChild(script);
+        };
 
-        setMap(mapInstance);
+        const initializeMap = () => {
+            if (!window.naver) {
+                console.error("네이버 지도 API가 로드되지 않았습니다.");
+                return;
+            }
 
-        restaurantList.forEach((restaurant) => {
-            const marker = new naver.maps.Marker({
-                position: new naver.maps.LatLng(restaurant.latitude, restaurant.longitude),
-                map: mapInstance,
+            const {naver} = window;
+
+            const mapInstance = new naver.maps.Map("map", {
+                center: new naver.maps.LatLng(37.5665, 126.9780),
+                zoom: 14,
             });
 
-            naver.maps.Event.addListener(marker, "click", () => {
-                setSelectedRestaurant(restaurant);
+            setMap(mapInstance);
+
+            restaurantList.forEach((restaurant) => {
+                const marker = new naver.maps.Marker({
+                    position: new naver.maps.LatLng(restaurant.latitude, restaurant.longitude),
+                    map: mapInstance,
+                });
+
+                naver.maps.Event.addListener(marker, "click", () => {
+                    setSelectedRestaurant(restaurant);
+                });
             });
-        });
+        };
+        loadNaverMap();
     }, [restaurantList]);
 
     const handleSearchChange = (e) => {
@@ -49,10 +70,10 @@ function Map() {
         <div className="map-container">
             <Header />
             <div className="map-sidebar">
-                <div className="search-container">
+                <div className="map-search-container">
                     <input
                         type="text"
-                        className="search-bar"
+                        className="map-search-bar"
                         placeholder="셰프, 레스토랑으로 검색하세요"
                         value={searchQuery}
                         onChange={handleSearchChange}
