@@ -20,6 +20,7 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 @Table(name = "users")
+@Entity
 
 public class User implements UserDetails {
 
