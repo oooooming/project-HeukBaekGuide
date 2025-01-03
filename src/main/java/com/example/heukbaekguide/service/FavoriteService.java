@@ -28,7 +28,7 @@ public class FavoriteService {
         return favoriteRepository.save(favorite);
     }
 
-    public List<Favorite> getFavoriteList(User user) {
+    public List<Favorite> getFavoriteList(Long user) {
         return favoriteRepository.findByUser(user);
     }
 

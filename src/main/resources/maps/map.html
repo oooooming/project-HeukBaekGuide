@@ -1,27 +1,104 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
-    <title>네이버지도 스틱코드</title>
+    <title>네이버 지도 스틱 코드</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=2q2flhk4x2"></script>
+
 </head>
 <body>
-<div id="map" style="width:100%; height:800px;"></div>
-
+<div id="mainMap" style="width:100%; height:700px; border: 1px solid black;"></div>
 <script>
+    $(document).ready(function () {
+        var mainMap = new naver.maps.Map('mainMap', {
+            center: new naver.maps.LatLng(37.5064178, 127.0911156),
+            zoom: 13,
+            zoomControl: true,
+            zoomControlOptions: {
+                position: naver.maps.Position.TOP_RIGHT,
+                style: naver.maps.ZoomControlStyle.SMALL
+            }
+        });
 
-    var map = new naver.maps.Map('map', {
-        center: new naver.maps.LatLng(37.5112, 127.0981), // 잠실 롯데월드를 중심으로 하는 지도
-        zoom: 15
-    });
+        function setMarkers(lat, lng, content) {
+            var marker = new naver.maps.Marker({
+                position: new naver.maps.LatLng(lat, lng),
+                map: mainMap
+            });
 
-    var marker = new naver.maps.Marker({
-        position: new naver.maps.LatLng(37.5112, 127.0981),
-        map: map
+            if (content) {
+                var infowindow = new naver.maps.InfoWindow({
+                    content: content
+                });
+
+                naver.maps.Event.addListener(marker, "click", function (e) {
+                    if (infowindow.getMap()) {
+                        infowindow.close();
+                    } else {
+                        infowindow.open(mainMap, marker);
+                    }
+                });
+            }
+        }
+
+
+
+        // 마커 추가
+        setMarkers(37.5064178, 127.0911156), [
+            '<div class="iw_inner">',
+            '   <h3>서울특별시청</h3>',
+            '   <p>서울특별시 중구 태평로1가 31 | 서울특별시 중구 세종대로 110 서울특별시청<br />',
+            '       <img src="/img/example/hi-seoul.jpg" width="55" height="55" alt="서울시청" class="thumb" /><br />',
+            '       02-120 | 공공,사회기관 &gt; 특별,광역시청<br />',
+            '       <a href="http://www.seoul.go.kr" target="_blank">www.seoul.go.kr/</a>',
+            '   </p>',
+            '</div>'
+        ].join('')); //1. 최강록 (백)
+        setMarkers(37.5243614, 127.0465901); //2. 최현석
+        setMarkers(37.5553209, 126.922401);  //3. 정지선
+        setMarkers(37.5261486, 126.9627509); //4. 파브리치오 페라리
+        setMarkers(37.5053029, 127.0288672); //5. 여경래
+        setMarkers(37.5233493, 127.0362087); //6. 조셉 리저루드
+        setMarkers(33.4287647, 126.6744441); //8. 오세득
+        setMarkers(37.5205886, 126.9395995); //9. 조은주
+        setMarkers(33.4193673, 126.4015222); //10. 김승민
+        setMarkers(37.5409203, 127.0147439); //11. 남정석
+        setMarkers(35.1525653, 126.8838538); //12. 안유성
+        setMarkers(37.5802195, 126.9709642); //13. 박준우
+        setMarkers(37.5126072, 127.1025386); //14. 방기수
+        setMarkers(37.5195017, 127.0240624); //15. 장호준
+        setMarkers(37.5396867, 126.9431899); //17. 최지형
+        setMarkers(37.5236843, 127.0389911); //18. 김도윤
+        setMarkers(37.5538, 126.918437); //19. 황진선
+
+        setMarkers(37.6548, 127.0292); //1 이모카세
+        setMarkers(37.5748, 127.0375); //1 안동집 손칼국시
+        setMarkers(37.5332,126.9654); //2 나폴리 맛피아
+        setMarkers(37.5771,126.9732); //3 철가방 요리사
+        setMarkers(37.5203,127.0221); //4 히든 천재
+        setMarkers(37.5523,126.9221); //5 야키토리 왕
+        setMarkers(37.5321,126.9812); //6 간귀
+        setMarkers(37.5641,126.9867); //7 장사천재
+        setMarkers(37.5482,127.0378); //8 반찬쉐프
+        setMarkers(37.5203,127.0221); //9 셀럽의 쉐프
+        setMarkers(37.5321,126.9812); //10 영탉
+        setMarkers(37.5641,126.9867); //11 요리하는 또라이
+        setMarkers(37.5109,127.1056); // 12 만찢남
+        setMarkers(37.5489,127.0375); // 13 불꽃남자
+        setMarkers(37.5203,127.0221	);// 14 고기깡패
+        setMarkers(37.5182921,127.0291463); // 15 원투쓰리
+        setMarkers(37.5332,126.9654); // 16 키친갱스터
+        setMarkers(37.4978,127.0275); // 17 트리플 스타
+
+
+
+
+
+
     });
 
 </script>
-
 </body>
 </html>
