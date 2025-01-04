@@ -1,36 +1,37 @@
 package com.example.heukbaekguide.domain;
 
+
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.hibernate.dialect.function.TruncFunction;
 
 import java.time.LocalDateTime;
 
+@Entity
 @Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Entity
-@Table(name = "searches") // 테이블 이름을 명시적으로 지정
 public class Search {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "search_id", nullable = false)
-    private Long searchId; // 필드 이름 수정
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long searchId;
 
     @Column(nullable = false)
-    private String searchTerm; // 필드 이름 수정 (카멜 케이스 사용)
-
-    @Column(name = "search_at", nullable = false)
-    private LocalDateTime searchAt; // 날짜/시간 타입으로 수정
+    private String search_term;
 
     @Column(nullable = false)
-    private String userName; // 필드 이름 수정 (카멜 케이스 사용)
+    private LocalDateTime searchAt;
+
+    @Column(nullable = false)
+    private String user_name;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
+
+
 }
