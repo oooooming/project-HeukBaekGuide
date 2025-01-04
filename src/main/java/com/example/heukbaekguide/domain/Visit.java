@@ -1,10 +1,7 @@
 package com.example.heukbaekguide.domain;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
@@ -13,10 +10,11 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class Visit {
 
     @Id
-    @Column(name = "vitit_id", nullable = false)
+    @Column(name = "visit_id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long visitId;
 
@@ -24,6 +22,10 @@ public class Visit {
     private LocalDateTime visitDate;
 
     @OneToOne
-    @Column(name = "review_id", nullable = false)
+    @JoinColumn(name = "review_id", nullable = false) // 외래 키 매핑
     private Review review;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")  // 'user_id'는 외래 키 컬럼명
+    private User user;
 }

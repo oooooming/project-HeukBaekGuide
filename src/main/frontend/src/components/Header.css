@@ -1,0 +1,41 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    background-color: black;
+    padding: 10px 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    height: 60px;
+    box-sizing: border-box;
+}
+
+.logo-image {
+    width: 45px;
+    height: auto;
+    cursor: pointer;
+}
+
+.menu {
+    display: flex;
+}
+
+.menu-button {
+    background: none;
+    width: 80px;
+    border: none;
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.menu-button:hover {
+    background-color: #555;
+    color: #fff;
+}
