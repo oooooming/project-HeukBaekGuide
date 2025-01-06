@@ -37,17 +37,21 @@ const RestaurantSlider = ({ data, onLike }) => {
             <div className="restaurant-slider" ref={sliderRef}>
                 {data.map((restaurant) => (
                     <div key={restaurant.id} className="slider-card">
-                        <img src={restaurant.image} alt={restaurant.name} />
+                        {/* 좋아요 버튼 */}
+                        <button
+                            className="slider-like-button"
+                            onClick={() => onLike(restaurant)}
+                        >
+                            <img
+                                src={`${process.env.PUBLIC_URL}/images/HeukBaekGuide_logo.png`}
+                                alt="Like"
+                                className="slider-like-icon"
+                            />
+                        </button>
                         <div className="slider-info">
                             <h3>{restaurant.name}</h3>
                             <p>{restaurant.address}</p>
                             <p>{restaurant.phone}</p>
-                            <button
-                                className="like-button"
-                                onClick={() => onLike(restaurant)}
-                            >
-                                ❤️
-                            </button>
                         </div>
                     </div>
                 ))}

@@ -5,8 +5,8 @@ import Header from "../components/Header";
 import mockData from "../data/mockData";
 
 function Map() {
-    const [restaurantList, setRestaurantList] = useState(mockData);
-    const [selectedRestaurant, setSelectedRestaurant] = useState(null);
+    const [restaurantList] = useState(mockData);
+    const [setSelectedRestaurant] = useState(null);
     const [map, setMap] = useState(null);
     const [searchQuery, setSearchQuery] = useState("");
 
@@ -89,11 +89,6 @@ function Map() {
                                 map.setCenter(new naver.maps.LatLng(restaurant.latitude, restaurant.longitude));
                             }}
                         >
-                            <img
-                                src={restaurant.image}
-                                alt={restaurant.name}
-                                onError={(e) => (e.target.src = "/images/default.jpg")} // 기본 이미지로 대체
-                            />
                             <div className="map-card-content">
                                 <h3>{restaurant.name}</h3>
                                 <p>{restaurant.category}</p>
