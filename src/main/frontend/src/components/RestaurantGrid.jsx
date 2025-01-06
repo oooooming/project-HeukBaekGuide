@@ -6,7 +6,17 @@ const RestaurantGrid = ({ data, onLike }) => {
         <div className="restaurant-grid">
             {data.map((restaurant) => (
                 <div key={restaurant.id} className="restaurant-card">
-                    <img src={restaurant.image} alt={restaurant.name} />
+                    {/* 좋아요 버튼 */}
+                    <button
+                        className="like-button"
+                        onClick={() => onLike(restaurant)}
+                    >
+                        <img
+                            src={`${process.env.PUBLIC_URL}/images/HeukBaekGuide_logo.png`}
+                            alt="Like"
+                            className="like-icon"
+                        />
+                    </button>
                     <div className="card-info">
                         <h3>{restaurant.name}</h3>
                         <p>
@@ -27,12 +37,6 @@ const RestaurantGrid = ({ data, onLike }) => {
                             >
                                 홈페이지로 이동
                             </a>
-                            <button
-                                className="like-button"
-                                onClick={() => onLike(restaurant)}
-                            >
-                                ❤️
-                            </button>
                         </div>
                     </div>
                 </div>

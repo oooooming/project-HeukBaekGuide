@@ -1,7 +1,11 @@
+html {
+    overflow: hidden;
+}
 .map-container {
     display: flex;
     height: 100vh;
     padding-top: 45px;
+    overflow: hidden;
 }
 
 .map {
@@ -11,18 +15,27 @@
 
 .map-sidebar {
     flex: 2;
+    display: flex;
+    flex-direction: column; /* 내부 요소 세로 정렬 */
     padding: 20px;
     background-color: #f9f9f9;
     border-right: 1px solid #ddd;
-    overflow-y: auto;
-    max-width: 400px;
+    max-width: 320px;
+}
+
+/* 검색창 고정 */
+.map-search-container {
+    flex-shrink: 0;
+    margin-bottom: 10px;
 }
 
 .map-card-list {
     display: flex;
     flex-direction: column;
     gap: 5px;
-    margin-top: 10px;
+    flex-grow: 1;
+    overflow-y: auto;
+    padding-right: 5px;
 }
 
 .map-restaurant-card {
@@ -40,14 +53,6 @@
 
 .map-restaurant-card:hover {
     transform: translateY(-5px);
-}
-
-.map-restaurant-card img {
-    width: 80px;
-    height: 80px;
-    object-fit: cover;
-    margin-right: 15px;
-    border-radius: 8px;
 }
 
 .map-card-content h3 {
