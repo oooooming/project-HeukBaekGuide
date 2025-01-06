@@ -31,4 +31,7 @@ public class User {
         this.userId = userId;
     }
 
+    public Long getUserid() {
+        return 0L;
+    }
 }

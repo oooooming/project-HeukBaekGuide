@@ -1,8 +1,8 @@
 package com.example.heukbaekguide.service;
 
 import lombok.RequiredArgsConstructor;
-import com.example.heukbaekguide.domain.User;
 import com.example.heukbaekguide.repository.UserRepository;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 
@@ -13,8 +13,8 @@ public class UserDetailService implements UserDetailsService {
     private final UserRepository userRepository;
 
     @Override
-    public User loadUserByUsername(String email) {
-        return userRepository.findByEmail(email)
+    public UserDetails loadUserByUsername(String email) {
+        return (UserDetails) userRepository.findByEmail(email)
                 .orElseThrow(() -> new IllegalArgumentException((email)));
     }
 }

@@ -3,7 +3,6 @@ package com.example.heukbaekguide.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.dialect.function.TruncFunction;
 
 import java.time.LocalDateTime;
 
@@ -32,5 +31,6 @@ public class Search {
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
+
 
 }
