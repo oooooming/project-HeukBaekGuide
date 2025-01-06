@@ -3,7 +3,6 @@ package com.example.heukbaekguide.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.dialect.function.TruncFunction;
 
 import java.time.LocalDateTime;
 
