@@ -28,8 +28,12 @@ public class FavoriteService {
         return favoriteRepository.save(favorite);
     }
 
-    public List<Favorite> getFavoriteList(Long user) {
-        return favoriteRepository.findByUser(user);
+    public List<Favorite> getFavoriteList(Long userId) {
+        User user = userRepository.findByUserId(userId); // User를 ID로 조회
+        if (user == null) {
+            throw new IllegalArgumentException("User not found with ID: " + userId);
+        }
+        return favoriteRepository.findByUser(user); // 조회된 User 객체 전달
     }
 
     public void deleteFavorite(Long favoriteId) {
