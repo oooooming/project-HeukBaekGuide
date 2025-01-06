@@ -14,7 +14,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @Service
 public class FavoriteService {
-    
+
     private final FavoriteRepository favoriteRepository;
     private final RestaurantRepository restaurantRepository;
     private final UserRepository userRepository;
@@ -33,7 +33,7 @@ public class FavoriteService {
         if (user == null) {
             throw new IllegalArgumentException("User not found with ID: " + userId);
         }
-        return favoriteRepository.findByUser(user); // 조회된 User 객체 전달
+        return favoriteRepository.findByUser(user.getUserid()); // 조회된 User 객체 전달
     }
 
     public void deleteFavorite(Long favoriteId) {
