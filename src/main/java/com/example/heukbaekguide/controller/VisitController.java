@@ -18,6 +18,7 @@ public class VisitController {
 
     @GetMapping("/{userId}")
     public List<Visit> getVisits(@PathVariable Long userId) {
+
         return visitService.getVisitsByUserId(userId);
     }
 }
