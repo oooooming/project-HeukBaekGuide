@@ -9,10 +9,18 @@ import mockData from "../data/mockData"; // mockdata import
 const MainPage = ({ isLoggedIn, setIsLoggedIn, likedRestaurants, setLikedRestaurants }) => {
     const [isSearchActive, setSearchActive] = useState(false);
     const [restaurantList, setRestaurantList] = useState([]); // 전체 데이터
+    const [filteredRestaurants, setFilteredRestaurants] = useState([]); // 필터링된 데이터
+    const [searchQuery, setSearchQuery] = useState(""); // 검색어 상태
     const [top10Restaurants, setTop10Restaurants] = useState([]); // 랜덤 Top10 데이터
     const navigate = useNavigate(); // 페이지 전환을 위한 네비게이트 함수
 
-    const handleSearchClick = () => setSearchActive(true);
+    const handleSearchClick = () =>{
+      setSearchActive(true);
+
+      if(!searchQuery){
+          setFilteredRestaurants(restaurantList);
+      }
+    };
     const handleOutsideClick = () => setSearchActive(false);
 
     // 좋아요 버튼 클릭 처리
@@ -33,6 +41,19 @@ const MainPage = ({ isLoggedIn, setIsLoggedIn, likedRestaurants, setLikedRestaur
     // Map으로 이동
     const navigateToMap = () => {
         navigate("/map");
+    };
+
+    const handleSearchInputChange = (e) => {
+        const query = e.target.value.trim();
+        setSearchQuery(query);
+
+        // 검색 결과 필터링: 지역 (address) 및 제목 (name) 기반
+        const filtered = restaurantList.filter(
+            (restaurant) =>
+                (restaurant.address && restaurant.address.includes(query)) ||
+                (restaurant.name && restaurant.name.includes(query))
+        );
+        setFilteredRestaurants(filtered);
     };
 
     useEffect(() => {
@@ -65,14 +86,6 @@ const MainPage = ({ isLoggedIn, setIsLoggedIn, likedRestaurants, setLikedRestaur
     return (
         <div className="main-container" onClick={handleOutsideClick}>
             <Header isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
-            <div className="mypage-link-container">
-                <button className="mypage-button" onClick={navigateToMyPage}>
-                    My Page
-                </button>
-                <button className="map-button" onClick={navigateToMap}>
-                    Map
-                </button>
-            </div>
             <div
                 className={`content-wrapper ${isSearchActive ? "shrink" : ""}`}
                 onClick={(e) => e.stopPropagation()}
@@ -87,8 +100,10 @@ const MainPage = ({ isLoggedIn, setIsLoggedIn, likedRestaurants, setLikedRestaur
                         <input
                             type="text"
                             className="main-search-bar"
-                            placeholder="셰프, 레스토랑으로 검색하세요"
+                            placeholder="레스토랑, 지역으로 검색하세요"
                             onClick={handleSearchClick}
+                            onChange={handleSearchInputChange}
+                            value={searchQuery}
                         />
                     </div>
                 </div>
@@ -104,7 +119,7 @@ const MainPage = ({ isLoggedIn, setIsLoggedIn, likedRestaurants, setLikedRestaur
             </div>
             {isSearchActive ? (
                 <div className="grid-container">
-                    <RestaurantGrid data={restaurantList} onLike={handleLike} />
+                    <RestaurantGrid data={filteredRestaurants} onLike={handleLike} />
                 </div>
             ) : (
                 <div className="slider-container">
