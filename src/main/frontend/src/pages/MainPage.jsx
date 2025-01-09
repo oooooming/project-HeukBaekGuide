@@ -86,14 +86,6 @@ const MainPage = ({ isLoggedIn, setIsLoggedIn, likedRestaurants, setLikedRestaur
     return (
         <div className="main-container" onClick={handleOutsideClick}>
             <Header isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
-            <div className="mypage-link-container">
-                <button className="mypage-button" onClick={navigateToMyPage}>
-                    My Page
-                </button>
-                <button className="map-button" onClick={navigateToMap}>
-                    Map
-                </button>
-            </div>
             <div
                 className={`content-wrapper ${isSearchActive ? "shrink" : ""}`}
                 onClick={(e) => e.stopPropagation()}
@@ -108,7 +100,7 @@ const MainPage = ({ isLoggedIn, setIsLoggedIn, likedRestaurants, setLikedRestaur
                         <input
                             type="text"
                             className="main-search-bar"
-                            placeholder="셰프, 레스토랑으로 검색하세요"
+                            placeholder="레스토랑, 지역으로 검색하세요"
                             onClick={handleSearchClick}
                             onChange={handleSearchInputChange}
                             value={searchQuery}

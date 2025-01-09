@@ -123,7 +123,7 @@ function Map() {
                     <input
                         type="text"
                         className="map-search-bar"
-                        placeholder="셰프, 레스토랑으로 검색하세요"
+                        placeholder="레스토랑, 지역으로 검색하세요"
                         value={searchQuery}
                         onChange={handleSearchChange}
                     />

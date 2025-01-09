@@ -29,6 +29,7 @@ const Header = ({ isLoggedIn, setIsLoggedIn }) => {
                 >
                     Map
                 </button>
+
                 {location.pathname === "/mypage" ? (
                     // MyPage 화면에서 MyPage만 표시
                     <button
