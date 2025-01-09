@@ -23,8 +23,8 @@ public class RestaurantController {
     }
 
     // 특정 식당 상세 조회
-    @GetMapping("/{id}")
-    public Restaurant getRestaurantById(@PathVariable Long id) {
-        return restaurantService.getRestaurantById(id);
+    @GetMapping("/{restaurantId}")
+    public Restaurant getRestaurantById(@PathVariable Long restaurantId) {
+        return restaurantService.getRestaurantById(restaurantId);
     }
 }
