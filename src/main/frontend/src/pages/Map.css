@@ -1,10 +1,11 @@
 html {
     overflow: hidden;
 }
+
 .map-container {
     display: flex;
-    height: 100vh;
-    padding-top: 45px;
+    height: calc(100vh - 40px); /* 헤더 높이 제외한 화면 크기 */
+    margin-top: 40px; /* 헤더와 겹치지 않도록 조정 */
     overflow: hidden;
 }
 
@@ -16,11 +17,12 @@ html {
 .map-sidebar {
     flex: 2;
     display: flex;
-    flex-direction: column; /* 내부 요소 세로 정렬 */
+    flex-direction: column;
     padding: 20px;
     background-color: #f9f9f9;
     border-right: 1px solid #ddd;
     max-width: 320px;
+    overflow: auto; /* 내부 스크롤 가능하게 설정 */
 }
 
 /* 검색창 고정 */
@@ -36,12 +38,33 @@ html {
     flex-grow: 1;
     overflow-y: auto;
     padding-right: 5px;
+
+    /* 스크롤 디자인 개선 */
+    scrollbar-width: thin;
+    scrollbar-color: #888 #f9f9f9;
+}
+
+.map-card-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+.map-card-list::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 4px;
+}
+
+.map-card-list::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+}
+
+.map-card-list::-webkit-scrollbar-track {
+    background-color: #f9f9f9;
 }
 
 .map-restaurant-card {
     display: flex;
-    flex-direction: row;
-    align-items: center;
+    flex-direction: column; /* 카드 내용 정렬 */
+    align-items: flex-start; /* 좌측 정렬 */
     padding: 10px;
     background-color: #fff;
     border: 1px solid #ddd;
@@ -66,6 +89,7 @@ html {
     color: #555;
 }
 
+/* 검색 바 스타일 */
 .map-search-container {
     display: flex;
     justify-content: center;
@@ -75,7 +99,7 @@ html {
 }
 
 .map-search-bar {
-    width: 100vh;
+    width: 100%;
     padding: 15px;
     font-size: 14px;
     border: none;
@@ -87,4 +111,13 @@ html {
 .map-search-bar:focus {
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
     outline: none;
+}
+
+@keyframes blink {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
 }

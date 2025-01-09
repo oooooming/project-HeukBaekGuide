@@ -182,7 +182,7 @@ const MyPage = ({ userName = "Test User" }) => {
                                             target="_blank"
                                             rel="noopener noreferrer"
                                         >
-                                            Visit Website
+                                            More Info
                                         </a>
                                     </div>
                                     <button
