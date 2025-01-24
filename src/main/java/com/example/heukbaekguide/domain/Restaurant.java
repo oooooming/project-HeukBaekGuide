@@ -42,7 +42,7 @@ public class Restaurant {
     @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<MenuItem> menuItems;
 
-    public Restaurant(Long restaurantId) {
+    public Restaurant(Long restaurantId, String restaurantName, String restaurantAddress, String restaurantPhone, Object restaurantURL, String restaurantLocation, Object restaurantAverageRating, Object restaurantReviewCount, Object menuItems) {
         this.restaurantId = restaurantId;
     }
 
